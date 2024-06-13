@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keytab-gen-app
+  labels:
+    app: keytab-gen-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: keytab-gen-app
+  template:
+    metadata:
+      labels:
+        app: keytab-gen-app
+    spec:
+      containers:
+        - name: keytab-gen-app
+          image: your-dockerhub-username/keytab-gen-app:latest
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /health/readiness
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health/liveness
+              port: 80
+            initialDelaySeconds: 15
+            periodSeconds: 20

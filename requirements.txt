@@ -1,0 +1,7 @@
+fastapi==0.95.1
+uvicorn==0.21.1
+jinja2==3.1.2
+aiofiles==23.1.0
+impacket==0.9.24
+setuptools-rust==1.1.1
+python-multipart==0.0.5
